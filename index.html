@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenSearch | EFPRP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        .text-green-accent { color: #22c55e; }
+        .bg-green-accent { background-color: #22c55e; }
+        .hover-bg-green-accent:hover { background-color: #16a34a; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <nav class="flex items-center justify-between px-8 py-6 border-b border-gray-800">
+        <div class="flex items-center gap-2">
+            <svg class="w-8 h-8 text-green-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+            <span class="text-xl font-bold tracking-wide">GreenSearch</span>
+        </div>
+        <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+            <a href="#" class="hover:text-white transition">Product</a>
+            <a href="#" class="hover:text-white transition">Mission</a>
+            <a href="#" class="hover:text-white transition">EFPRP</a>
+        </div>
+        <a href="#download" class="bg-green-accent text-gray-900 px-5 py-2 rounded-full font-semibold text-sm hover-bg-green-accent transition">Download</a>
+    </nav>
+
+    <main class="flex-grow flex flex-col items-center justify-center text-center px-4 py-24">
+        <div class="max-w-4xl">
+            <p class="text-green-accent font-medium tracking-widest uppercase mb-4 text-sm">Project by EFPRP</p>
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
+                The web, <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">powered by Earth.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+                An eco-centric search interface and start page providing a reliable, secure gateway to the web while aligning with our core mission of environmental conservation.
+            </p>
+            <a href="#download" class="bg-white text-gray-900 px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-200 transition shadow-lg inline-flex items-center gap-2">
+                Download GreenSearch
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            </a>
+        </div>
+    </main>
+
+    <section class="py-20 bg-[#1e293b] border-y border-gray-800">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12">
+            <div>
+                <h3 class="text-xl font-bold mb-3 text-white">Eco-Centric Infrastructure</h3>
+                <p class="text-gray-400 leading-relaxed">Designed by the EFPRP to maintain a low digital footprint, supporting rural preservation through optimal resource management.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-3 text-white">Secure Local Instance</h3>
+                <p class="text-gray-400 leading-relaxed">Operates entirely off the grid using a local JavaScript engine to answer "how-to" scenarios without contacting outside servers.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-3 text-white">Absolute Privacy</h3>
+                <p class="text-gray-400 leading-relaxed">Built under strict proprietary terms to ensure your data remains safely compartmentalized and under your complete control.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="download" class="py-24 flex flex-col items-center justify-center text-center px-4">
+        <h2 class="text-3xl font-bold mb-8">Ready to experience liftoff?</h2>
+        <div class="flex flex-col sm:flex-row gap-4">
+            <button class="bg-gray-800 hover:bg-gray-700 border border-gray-700 px-8 py-4 rounded-xl font-medium transition flex items-center justify-center gap-3 w-64">
+                Download for Windows
+            </button>
+            <button class="bg-gray-800 hover:bg-gray-700 border border-gray-700 px-8 py-4 rounded-xl font-medium transition flex items-center justify-center gap-3 w-64">
+                Download for Linux
+            </button>
+        </div>
+        <p class="text-xs text-gray-500 mt-6 max-w-md">
+            By downloading, you agree to the EFPRP Proprietary License. All rights reserved. No unauthorized distribution or modification permitted.
+        </p>
+    </section>
+
+    <footer class="border-t border-gray-800 py-8 px-8 flex flex-col md:flex-row items-center justify-between text-sm text-gray-500">
+        <p>&copy; 2026 European Fire Prevention & Rural Preservation Organization.</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+            <a href="#" class="hover:text-white">Privacy</a>
+            <a href="#" class="hover:text-white">Terms</a>
+            <a href="https://www.efprp.org" class="hover:text-white">EFPRP.org</a>
+        </div>
+    </footer>
+
+</body>
+</html>
