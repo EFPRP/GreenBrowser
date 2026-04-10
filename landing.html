@@ -5,23 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreenBrowser | EFPRP</title>
     <meta name="description" content="GreenBrowser - The web, powered by Earth.">
-    
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
-                        'gb-dark': '#0b0f19',
-                        'gb-card': '#111827',
+                        'gb-light': '#ffffff',
+                        'gb-surface': '#f8fafc',
                         'gb-green': '#10b981',
                         'gb-emerald': '#059669',
                     }
@@ -29,169 +22,128 @@
             }
         }
     </script>
-
     <style>
-        body {
-            background-color: #0b0f19;
-            color: #f3f4f6;
-            overflow-x: hidden;
-        }
-
-        /* Floating Animation Inspired by Antigravity */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .animate-float-delayed {
-            animation: float 6s ease-in-out 3s infinite;
-        }
-
-        /* Subtle Glow Effect */
-        .glow-effect {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, rgba(11,15,25,0) 70%);
-            border-radius: 50%;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* Smooth Reveal for scroll */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        body { background-color: #ffffff; color: #0f172a; overflow-x: hidden; }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-delayed { animation: float 6s ease-in-out 3s infinite; }
+        .glow-effect { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(16,185,129,0.1) 0%, rgba(255,255,255,0) 70%); border-radius: 50%; z-index: -1; pointer-events: none; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
-<body class="flex flex-col min-h-screen">
-
-    <nav class="fixed w-full z-50 bg-gb-dark/80 backdrop-blur-md border-b border-gray-800 transition-all">
+<body class="flex flex-col min-h-screen selection:bg-gb-green selection:text-white">
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 transition-all">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3 cursor-pointer">
-                <svg class="w-8 h-8 text-gb-green" fill="currentColor" viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22L6.66 19.7C7.14 19.87 7.64 20 8 20C19 20 22 3 22 3C22 3 21 8 17 8Z"/></svg>
-                <span class="text-xl font-semibold tracking-tight text-white">GreenBrowser</span>
+                <img src="logo-efprp-wb.png" alt="EFPRP Logo" class="h-8 w-auto">
+                <span class="text-xl font-bold tracking-tight text-gray-900">GreenBrowser</span>
             </div>
-            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
-                <a href="#showcase" class="hover:text-white transition">Showcase</a>
-                <a href="#features" class="hover:text-white transition">Features</a>
-                <a href="https://www.efprp.org" target="_blank" class="hover:text-white transition">EFPRP</a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-500">
+                <a href="#showcase" class="hover:text-gb-green transition">Showcase</a>
+                <a href="#features" class="hover:text-gb-green transition">Features</a>
+                <a href="https://www.efprp.org" target="_blank" class="hover:text-gb-green transition">EFPRP</a>
             </div>
-            <a href="https://github.com/EFPRP/GreenBrowser/releases/download/Alpha/GreenBrowser.exe" class="bg-white text-black px-6 py-2.5 rounded-full text-sm font-medium hover:bg-gray-200 transition">
+            <a href="https://github.com/EFPRP/GreenBrowser/releases/download/Alpha/GreenBrowser.exe" class="bg-gray-900 text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-gray-800 transition">
                 Download Alpha
             </a>
         </div>
     </nav>
 
-    <header class="relative pt-40 pb-20 px-6 flex flex-col items-center text-center overflow-hidden">
-        <div class="glow-effect top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px]"></div>
-        
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-800/50 border border-gray-700 text-xs text-gray-300 mb-8 backdrop-blur-sm">
+    <header class="relative pt-40 pb-20 px-6 flex flex-col items-center text-center overflow-hidden bg-gb-surface">
+        <div class="glow-effect top-20 left-1/2 -translate-x-1/2"></div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-gray-200 text-xs text-gray-600 mb-8 shadow-sm">
             <span class="w-2 h-2 rounded-full bg-gb-green animate-pulse"></span>
             EFPRP Alpha Release Now Available
         </div>
-        
-        <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-6 text-white leading-tight">
+        <h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter mb-6 text-gray-900 leading-tight">
             Build the <br/>
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-gb-green to-gb-emerald">new way.</span>
         </h1>
-        
-        <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl font-light">
+        <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl font-light">
             An eco-centric search interface operating locally. Experience true privacy and sustainability without leaving the grid.
         </p>
-        
-        <div class="flex flex-col sm:flex-row gap-4 z-10">
-            <a href="https://github.com/EFPRP/GreenBrowser/releases/download/Alpha/GreenBrowser.exe" class="bg-gb-green hover:bg-gb-emerald text-white px-8 py-4 rounded-full font-medium text-lg transition shadow-[0_0_20px_rgba(16,185,129,0.3)] flex items-center justify-center gap-2">
-                Download GreenBrowser
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-            </a>
-        </div>
+        <a href="https://github.com/EFPRP/GreenBrowser/releases/download/Alpha/GreenBrowser.exe" class="bg-gb-green hover:bg-gb-emerald text-white px-8 py-4 rounded-full font-semibold text-lg transition shadow-lg flex items-center justify-center gap-2">
+            Download GreenBrowser
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+        </a>
     </header>
 
-    <section id="showcase" class="py-24 px-6 relative z-10 bg-gradient-to-b from-gb-dark to-gb-card">
+    <section id="showcase" class="py-24 px-6 relative z-10 bg-white border-y border-gray-100">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-5xl font-bold mb-4">See it in action</h2>
-                <p class="text-gray-400 text-lg">Fluid design meets absolute efficiency.</p>
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 text-gray-900">See it in action</h2>
+                <p class="text-gray-500 text-lg">Fluid design meets absolute efficiency.</p>
             </div>
-
-            <div class="rounded-2xl overflow-hidden border border-gray-800 shadow-2xl mb-16 reveal animate-float bg-black">
+            <div class="rounded-2xl overflow-hidden border border-gray-200 shadow-2xl mb-16 reveal animate-float bg-gray-50">
                 <video class="w-full h-auto object-cover" autoplay loop muted playsinline>
                     <source src="videoshow.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
                 </video>
             </div>
-
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="rounded-2xl overflow-hidden border border-gray-800 shadow-lg reveal animate-float-delayed">
-                    <img src="show1.png" alt="GreenBrowser Interface 1" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                <div class="rounded-2xl overflow-hidden border border-gray-200 shadow-lg reveal animate-float-delayed bg-white">
+                    <img src="show1.png" alt="Interface 1" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="rounded-2xl overflow-hidden border border-gray-800 shadow-lg reveal animate-float">
-                    <img src="show2.png" alt="GreenBrowser Interface 2" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                <div class="rounded-2xl overflow-hidden border border-gray-200 shadow-lg reveal animate-float bg-white">
+                    <img src="show2.png" alt="Interface 2" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="rounded-2xl overflow-hidden border border-gray-800 shadow-lg reveal animate-float-delayed">
-                    <img src="show3.png" alt="GreenBrowser Interface 3" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                <div class="rounded-2xl overflow-hidden border border-gray-200 shadow-lg reveal animate-float-delayed bg-white">
+                    <img src="show3.png" alt="Interface 3" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="features" class="py-24 px-6">
+    <section id="features" class="py-24 px-6 bg-gb-surface">
         <div class="max-w-7xl mx-auto">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div class="reveal">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6">A natural abstraction.</h2>
-                    <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">A natural abstraction.</h2>
+                    <p class="text-gray-600 text-lg mb-8 leading-relaxed">
                         Gain a complete understanding of your browsing environment. GreenBrowser operates securely, utilizing local JavaScript engines to answer scenarios entirely offline. 
                     </p>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3">
-                            <svg class="w-6 h-6 text-gb-green mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <div class="bg-green-100 p-2 rounded-lg">
+                                <svg class="w-6 h-6 text-gb-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
                             <div>
-                                <h4 class="font-semibold text-white">Absolute Privacy</h4>
-                                <p class="text-sm text-gray-500">No external server communication required for base tasks.</p>
+                                <h4 class="font-semibold text-gray-900">Absolute Privacy</h4>
+                                <p class="text-sm text-gray-500 mt-1">No external server communication required for base tasks.</p>
                             </div>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <svg class="w-6 h-6 text-gb-green mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        <li class="flex items-start gap-4">
+                            <div class="bg-green-100 p-2 rounded-lg">
+                                <svg class="w-6 h-6 text-gb-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </div>
                             <div>
-                                <h4 class="font-semibold text-white">Eco-Centric Architecture</h4>
-                                <p class="text-sm text-gray-500">Designed to maintain the lowest possible digital footprint.</p>
+                                <h4 class="font-semibold text-gray-900">Eco-Centric Architecture</h4>
+                                <p class="text-sm text-gray-500 mt-1">Designed to maintain the lowest possible digital footprint.</p>
                             </div>
                         </li>
                     </ul>
                 </div>
-                <div class="relative reveal h-[400px] rounded-2xl border border-gray-800 bg-gb-card flex items-center justify-center overflow-hidden">
-                     <div class="absolute inset-0 bg-gradient-to-tr from-gb-green/10 to-transparent"></div>
-                     <p class="text-gray-600 font-mono text-sm">[Interactive Element Space]</p>
+                <div class="relative reveal h-[400px] rounded-2xl border border-gray-200 bg-white flex items-center justify-center overflow-hidden shadow-inner">
+                     <div class="absolute inset-0 bg-gradient-to-tr from-green-50 to-transparent"></div>
+                     <img src="logo-efprp-wb.png" alt="EFPRP Watermark" class="opacity-10 h-32 w-auto absolute">
+                     <p class="text-gray-400 font-mono text-sm relative z-10">[Interactive Element Space]</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="mt-auto border-t border-gray-800 bg-gb-dark pt-16 pb-8 px-6">
+    <footer class="mt-auto border-t border-gray-200 bg-white pt-12 pb-8 px-6">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-2">
-                <span class="text-lg font-bold text-white tracking-tight">GreenBrowser</span>
+            <div class="flex items-center gap-3">
+                <img src="logo-efprp-wb.png" alt="EFPRP Logo" class="h-6 w-auto grayscale opacity-70">
+                <span class="text-lg font-bold text-gray-900 tracking-tight">GreenBrowser</span>
             </div>
             <div class="text-sm text-gray-500 flex gap-6">
-                <a href="#" class="hover:text-white transition">GNU Affero Licence</a>
-                <a href="https://www.efprp.org" class="hover:text-white transition">EFPRP</a>
+                <a href="#" class="hover:text-gb-green transition">Proprietary License</a>
+                <a href="https://www.efprp.org" class="hover:text-gb-green transition">EFPRP</a>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto mt-8 text-center md:text-left text-xs text-gray-600">
+        <div class="max-w-7xl mx-auto mt-8 text-center md:text-left text-xs text-gray-400">
             &copy; 2026 European Fire Prevention & Rural Preservation Organization. All rights reserved.
         </div>
     </footer>
@@ -209,7 +161,7 @@
             }
         }
         window.addEventListener("scroll", reveal);
-        reveal(); // Trigger on load
+        reveal();
     </script>
 </body>
 </html>
