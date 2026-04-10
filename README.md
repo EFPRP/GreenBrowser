@@ -17,10 +17,6 @@
   <img src="https://img.shields.io/badge/license-AGPL--3.0-20E377?style=for-the-badge&logo=gnu&logoColor=white&labelColor=0a0e0c" alt="License: AGPL-3.0" />
 </p>
 
-<p align="center">
-  <em>Designed by <strong>Alexios ELIZALDE XIROKOSTA</strong> for the<br/>European Fire Prevention & Rural Preservation Organization (EFPPR)</em>
-</p>
-
 ---
 
 ## 📖 Table of Contents
