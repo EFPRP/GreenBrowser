@@ -16,10 +16,6 @@
   <img src="https://img.shields.io/badge/license-GNU_Affero-444?style=for-the-badge&labelColor=0a0e0c" alt="License" />
 </p>
 
-<p align="center">
-  <em>Designed by <strong>Alexios ELIZALDE XIROKOSTA</strong> for the<br/>European Fire Prevention & Rural Preservation Organization (EFPPR)</em>
-</p>
-
 ---
 
 ## 📖 Table of Contents
