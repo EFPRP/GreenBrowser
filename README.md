@@ -1,4 +1,5 @@
 <p align="center">
+  <img src="public/icon.png" alt="GreenBrowser Logo" width="120" />
 </p>
 
 <h1 align="center">🌿 GreenBrowser</h1>
@@ -13,7 +14,11 @@
   <img src="https://img.shields.io/badge/electron-28.2.1-47848f?style=for-the-badge&logo=electron&logoColor=white&labelColor=0a0e0c" alt="Electron" />
   <img src="https://img.shields.io/badge/vite-8.0.4-646cff?style=for-the-badge&logo=vite&logoColor=white&labelColor=0a0e0c" alt="Vite" />
   <img src="https://img.shields.io/badge/platform-windows-0078D4?style=for-the-badge&logo=windows&logoColor=white&labelColor=0a0e0c" alt="Platform" />
-  <img src="https://img.shields.io/badge/license-GNU_Affero-444?style=for-the-badge&labelColor=0a0e0c" alt="License" />
+  <img src="https://img.shields.io/badge/license-AGPL--3.0-20E377?style=for-the-badge&logo=gnu&logoColor=white&labelColor=0a0e0c" alt="License: AGPL-3.0" />
+</p>
+
+<p align="center">
+  <em>Designed by <strong>Alexios ELIZALDE XIROKOSTA</strong> for the<br/>European Fire Prevention & Rural Preservation Organization (EFPPR)</em>
 </p>
 
 ---

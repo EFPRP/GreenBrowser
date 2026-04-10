@@ -1,0 +1,14 @@
+directories:
+  output: dist-electron
+  buildResources: build
+appId: com.efppr.greenbrowser
+productName: GreenBrowser
+win:
+  target: nsis
+  icon: public/icon.png
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+files: []
+electronVersion: 28.3.3
