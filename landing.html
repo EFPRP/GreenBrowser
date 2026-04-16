@@ -7,18 +7,35 @@
     <meta name="description" content="GreenBrowser - The web, powered by Earth.">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
                     colors: {
-                        'gb-dark': '#0b0f19',
-                        'gb-card': '#111827',
-                        'gb-green': '#10b981',
-                        'gb-emerald': '#059669',
+                        'gb-dark': '#050505',
+                        'gb-card': '#0a0a0a',
+                        'gb-green': '#00ff88',
+                        'gb-emerald': '#00b359',
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'text-gradient': 'text-gradient 3s linear infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        'text-gradient': {
+                            to: {
+                                backgroundPosition: '200% center'
+                            }
+                        }
                     }
                 }
             }
@@ -26,142 +43,378 @@
     </script>
 
     <style>
-        body { background-color: #0b0f19; color: #f3f4f6; overflow-x: hidden; }
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        .animate-float-delayed { animation: float 6s ease-in-out 3s infinite; }
-        .glow-effect { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, rgba(11,15,25,0) 70%); border-radius: 50%; z-index: -1; pointer-events: none; }
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        body { 
+            background-color: #050505; 
+            color: #f3f4f6; 
+            overflow-x: hidden; 
+        }
+        
+        /* Modern Glassmorphism */
+        .glass-nav {
+            background: rgba(5, 5, 5, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-card {
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 136, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(0, 255, 136, 0.15);
+        }
+
+        /* UIVerse Inspired Button: The Glowing Border / Gradient Button */
+        .uiverse-btn {
+            position: relative;
+            padding: 16px 32px;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            overflow: hidden;
+            border: none;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            z-index: 1;
+        }
+
+        .uiverse-btn::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, #00ff88, #00b359, #00ff88, #00b359);
+            z-index: -2;
+            border-radius: 999px;
+            background-size: 400%;
+            animation: text-gradient 3s linear infinite;
+            filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .uiverse-btn::after {
+            content: '';
+            position: absolute;
+            inset: 1px;
+            background: #0a0a0a;
+            border-radius: 999px;
+            z-index: -1;
+            transition: background 0.3s ease;
+        }
+
+        .uiverse-btn:hover::before {
+            opacity: 1;
+        }
+        .uiverse-btn:hover::after {
+            background: rgba(10, 10, 10, 0.8);
+        }
+
+        /* Secondary UIVerse style button for nav */
+        .btn-nav {
+            position: relative;
+            display: inline-block;
+            padding: 10px 24px;
+            color: #ffffff;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 500;
+            overflow: hidden;
+            transition: 0.3s ease;
+        }
+        
+        .btn-nav::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease-in-out;
+            border-radius: 999px;
+        }
+
+        .btn-nav:hover {
+            color: #000;
+            border-color: #fff;
+        }
+
+        .btn-nav:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Text Gradients */
+        .text-gradient {
+            background-size: 200% auto;
+            background-clip: text;
+            text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: text-gradient 4s linear infinite;
+        }
+
+        /* Reveal Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* UIVerse Card Animation */
+        .card-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+        
+        .feature-icon-box {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(0, 255, 136, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover .feature-icon-box {
+            background: rgba(0, 255, 136, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+            transform: scale(1.1);
+        }
+
+        /* Image hover effects */
+        .img-hover-zoom {
+            overflow: hidden;
+        }
+        .img-hover-zoom img {
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .img-hover-zoom:hover img {
+            transform: scale(1.05);
+        }
     </style>
 </head>
-<body class="flex flex-col min-h-screen selection:bg-gb-green selection:text-white">
+<body class="flex flex-col min-h-screen selection:bg-gb-green selection:text-black">
 
-    <nav class="fixed w-full z-50 bg-gb-dark/80 backdrop-blur-md border-b border-gray-800 transition-all">
+    <!-- Background Animated Blobs -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-gb-green/5 blur-[120px] animate-blob"></div>
+        <div class="absolute top-[20%] right-[-10%] w-[30%] h-[50%] rounded-full bg-gb-emerald/5 blur-[100px] animate-blob" style="animation-delay: 2s"></div>
+        <div class="absolute bottom-[-20%] left-[20%] w-[40%] h-[40%] rounded-full bg-blue-900/10 blur-[120px] animate-blob" style="animation-delay: 4s"></div>
+    </div>
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3 cursor-pointer">
-                <img src="logo-efprp-wb.png" alt="EFPRP Logo" class="h-8 w-auto">
-                <span class="text-xl font-semibold tracking-tight text-white">GreenBrowser</span>
+            <div class="flex items-center gap-3 cursor-pointer group">
+                <div class="relative flex items-center justify-center w-8 h-8 rounded-lg bg-white/5 border border-white/10 group-hover:border-gb-green/50 transition-colors">
+                    <img src="logo-efprp-wb.png" alt="EFPRP Logo" class="h-5 w-auto">
+                </div>
+                <span class="text-xl font-bold tracking-tight text-white group-hover:text-gb-green transition-colors">GreenBrowser</span>
             </div>
             <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
                 <a href="#showcase" class="hover:text-white transition">Showcase</a>
                 <a href="#features" class="hover:text-white transition">Features</a>
                 <a href="https://www.efprp.org" target="_blank" class="hover:text-white transition">EFPRP</a>
             </div>
-            <a href="https://github.com/EFPRP/GreenBrowser/releases/download/Alpha/GreenBrowser.exe" class="bg-white text-black px-6 py-2.5 rounded-full text-sm font-medium hover:bg-gray-200 transition">
-                Download Alpha (Windows)
+            <a href="https://github.com/EFPRP/GreenBrowser/releases/download/Alpha/GreenBrowser.exe" class="btn-nav">
+                Get Alpha
             </a>
         </div>
     </nav>
 
-    <header class="relative pt-40 pb-20 px-6 flex flex-col items-center text-center overflow-hidden">
-        <div class="glow-effect top-20 left-1/2 -translate-x-1/2"></div>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-800/50 border border-gray-700 text-xs text-gray-300 mb-8 backdrop-blur-sm">
-            <span class="w-2 h-2 rounded-full bg-gb-green animate-pulse"></span>
-            EFPRP Alpha Release Now Available
+    <header class="relative min-h-[90vh] pt-32 pb-20 px-6 flex flex-col items-center justify-center text-center overflow-hidden">
+        
+        <!-- Pill Badge -->
+        <div class="reveal opacity-0 translate-y-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-gray-300 mb-8 backdrop-blur-sm cursor-default hover:bg-white/10 transition-colors">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gb-green opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-gb-green"></span>
+            </span>
+            Alpha Release is now live
         </div>
-        <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-6 text-white leading-tight">
-            Build the <br/>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-gb-green to-gb-emerald">new way.</span>
+        
+        <h1 class="reveal opacity-0 translate-y-8 text-6xl md:text-8xl font-bold tracking-tight mb-6 text-white leading-[1.1] max-w-4xl">
+            Experience the <br/>
+            <span class="text-gradient bg-gradient-to-r from-gb-green via-emerald-400 to-gb-green">future of browsing.</span>
         </h1>
-        <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl font-light">
-            An eco-centric search interface operating locally. Experience true privacy and sustainability without leaving the grid.
+        
+        <p class="reveal opacity-0 translate-y-8 max-w-2xl text-lg md:text-xl text-gray-400 mb-12 font-light" style="transition-delay: 0.1s">
+            An eco-centric search interface operating locally. Experience true privacy, unparalleled speed, and beautiful design without leaving the grid.
         </p>
-        <div class="flex flex-col items-center z-10">
-            <a href="https://github.com/EFPRP/GreenBrowser/releases/download/Alpha/GreenBrowser.exe" class="bg-gb-green hover:bg-gb-emerald text-white px-8 py-4 rounded-full font-medium text-lg transition shadow-[0_0_20px_rgba(16,185,129,0.3)] flex items-center justify-center gap-2">
+        
+        <div class="reveal opacity-0 translate-y-8 flex flex-col items-center z-10" style="transition-delay: 0.2s">
+            <a href="https://github.com/EFPRP/GreenBrowser/releases/download/Alpha/GreenBrowser.exe" class="uiverse-btn group">
                 Download for Windows
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </a>
-            <p class="text-sm text-gray-500 mt-4 tracking-wide uppercase">Available exclusively for Windows OS</p>
+            <p class="text-xs text-gray-500 mt-6 tracking-widest uppercase font-medium">Windows 10/11 Compatible</p>
         </div>
     </header>
 
-    <section id="showcase" class="py-24 px-6 relative z-10 bg-gradient-to-b from-gb-dark to-gb-card">
+    <section id="showcase" class="py-32 px-6 relative z-10">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-5xl font-bold mb-4">See it in action</h2>
-                <p class="text-gray-400 text-lg">Fluid design meets absolute efficiency.</p>
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Fluid <span class="text-gray-500 font-light">meets</span> efficient.</h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">Every pixel meticulously crafted for absolute performance and visual delight.</p>
             </div>
-            <div class="rounded-2xl overflow-hidden border border-gray-800 shadow-2xl mb-16 reveal animate-float bg-black">
-                <video class="w-full h-auto object-cover" autoplay loop muted playsinline>
+            
+            <div class="rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] mb-20 reveal bg-[#0a0a0a] ring-1 ring-white/5 mx-auto max-w-5xl relative uiverse-card">
+                <!-- Mac-like window controls -->
+                <div class="absolute top-0 w-full h-10 border-b border-white/5 bg-white/5 flex items-center px-4 gap-2 z-10 backdrop-blur-md">
+                    <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                </div>
+                <video class="w-full h-auto object-cover pt-10" autoplay loop muted playsinline>
                     <source src="videoshow.mp4" type="video/mp4">
                 </video>
             </div>
+            
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="rounded-2xl overflow-hidden border border-gray-800 shadow-lg reveal animate-float-delayed">
-                    <img src="show1.png" alt="Interface 1" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                <div class="glass-card rounded-2xl border border-white/5 shadow-2xl reveal img-hover-zoom p-2">
+                    <div class="rounded-xl overflow-hidden h-full">
+                        <img src="show1.png" alt="Interface 1" class="w-full h-full object-cover">
+                    </div>
                 </div>
-                <div class="rounded-2xl overflow-hidden border border-gray-800 shadow-lg reveal animate-float">
-                    <img src="show2.png" alt="Interface 2" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                <div class="glass-card rounded-2xl border border-white/5 shadow-2xl reveal img-hover-zoom p-2" style="transition-delay: 0.1s">
+                    <div class="rounded-xl overflow-hidden h-full">
+                        <img src="show2.png" alt="Interface 2" class="w-full h-full object-cover">
+                    </div>
                 </div>
-                <div class="rounded-2xl overflow-hidden border border-gray-800 shadow-lg reveal animate-float-delayed">
-                    <img src="show3.png" alt="Interface 3" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                <div class="glass-card rounded-2xl border border-white/5 shadow-2xl reveal img-hover-zoom p-2" style="transition-delay: 0.2s">
+                    <div class="rounded-xl overflow-hidden h-full">
+                        <img src="show3.png" alt="Interface 3" class="w-full h-full object-cover">
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="features" class="py-24 px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <div class="reveal">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">A natural abstraction.</h2>
-                <p class="text-gray-400 text-lg mb-12 leading-relaxed">
-                    Gain a complete understanding of your browsing environment. GreenBrowser operates securely, utilizing local JavaScript engines to answer scenarios entirely offline. 
+    <section id="features" class="py-32 px-6 border-t border-white/5 bg-gradient-to-b from-transparent to-gb-green/5">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">A natural abstraction.</h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
+                    Operate securely offline. We utilize local JavaScript engines entirely abstracted from the grid to guarantee your privacy. 
                 </p>
-                <ul class="grid md:grid-cols-2 gap-8 text-left">
-                    <li class="flex items-start gap-4 p-6 rounded-2xl bg-gray-800/30 border border-gray-800/50">
-                        <div class="bg-gray-800 p-2 rounded-lg">
-                            <svg class="w-6 h-6 text-gb-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass-card p-8 rounded-3xl reveal card-container group">
+                    <div class="flex flex-col gap-6">
+                        <div class="feature-icon-box">
+                            <svg class="w-6 h-6 text-gb-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-white">Absolute Privacy</h4>
-                            <p class="text-sm text-gray-500 mt-2">No external server communication required for base tasks.</p>
+                            <h4 class="text-2xl font-semibold text-white mb-3">Absolute Privacy</h4>
+                            <p class="text-gray-400 leading-relaxed text-sm md:text-base">No external servers. No telemetry. Your data stays on your machine, always securely encapsulated away from prying eyes.</p>
                         </div>
-                    </li>
-                    <li class="flex items-start gap-4 p-6 rounded-2xl bg-gray-800/30 border border-gray-800/50">
-                        <div class="bg-gray-800 p-2 rounded-lg">
-                            <svg class="w-6 h-6 text-gb-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                </div>
+                
+                <div class="glass-card p-8 rounded-3xl reveal card-container group" style="transition-delay: 0.1s">
+                    <div class="flex flex-col gap-6">
+                        <div class="feature-icon-box">
+                            <svg class="w-6 h-6 text-gb-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-white">Eco-Centric Architecture</h4>
-                            <p class="text-sm text-gray-500 mt-2">Designed to maintain the lowest possible digital footprint.</p>
+                            <h4 class="text-2xl font-semibold text-white mb-3">Eco-Centric Core</h4>
+                            <p class="text-gray-400 leading-relaxed text-sm md:text-base">Designed to maintain the lowest digital footprint possible, consuming minimal resources to help preserve physical ones.</p>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="mt-auto border-t border-gray-800 bg-gb-dark pt-12 pb-8 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-3">
-                <img src="logo-efprp-wb.png" alt="EFPRP Logo" class="h-6 w-auto grayscale opacity-70">
-                <span class="text-lg font-bold text-white tracking-tight">GreenBrowser</span>
+    <footer class="mt-auto border-t border-white/10 bg-[#020202] pt-16 pb-8 px-6 relative overflow-hidden">
+        <div class="absolute inset-x-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-gb-green/50 to-transparent"></div>
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10">
+                    <img src="logo-efprp-wb.png" alt="EFPRP Logo" class="h-5 w-auto grayscale opacity-50">
+                </div>
+                <div>
+                    <span class="block text-lg font-bold text-white tracking-tight">GreenBrowser</span>
+                    <span class="block text-xs text-gray-500">by EFPRP</span>
+                </div>
             </div>
-            <div class="text-sm text-gray-500 flex gap-6">
-                <a href="#" class="hover:text-white transition">GNU Affero License</a>
-                <a href="https://www.efprp.org" class="hover:text-white transition">EFPRP</a>
+            <div class="text-sm font-medium text-gray-400 flex flex-wrap justify-center gap-8">
+                <a href="#" class="hover:text-white transition-colors">GNU Affero License</a>
+                <a href="https://github.com/EFPRP/GreenBrowser" class="hover:text-white transition-colors">GitHub</a>
+                <a href="https://www.efprp.org" class="hover:text-white transition-colors">Organization</a>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto mt-8 text-center md:text-left text-xs text-gray-600">
-            &copy; 2026 European Fire Prevention & Rural Preservation Organization. All rights reserved.
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-white/5 flex items-center justify-between text-xs text-gray-600">
+            <p>&copy; 2026 European Fire Prevention & Rural Preservation Organization.</p>
+            <p>Made with intention.</p>
         </div>
     </footer>
 
     <script>
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
+        // Reveal Animations Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
                 }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Navbar blur on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.style.background = 'rgba(5, 5, 5, 0.8)';
+                navbar.classList.add('shadow-lg', 'shadow-black/50');
+            } else {
+                navbar.style.background = 'rgba(5, 5, 5, 0.4)';
+                navbar.classList.remove('shadow-lg', 'shadow-black/50');
             }
-        }
-        window.addEventListener("scroll", reveal);
-        reveal();
+        });
+        
+        // Initial check for elements in view
+        setTimeout(() => {
+            document.querySelectorAll('.reveal').forEach((el) => {
+                const rect = el.getBoundingClientRect();
+                if(rect.top < window.innerHeight) {
+                    el.classList.add('active');
+                }
+            });
+        }, 100);
     </script>
 </body>
 </html>
