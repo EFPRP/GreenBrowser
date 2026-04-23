@@ -2,7 +2,7 @@
   <img src="public/icon.png" alt="GreenBrowser Logo" width="120" />
 </p>
 
-<h1 align="center">🌿 GreenBrowser</h1>
+<h1 align="center">EFPRP GreenBrowser</h1>
 
 <p align="center">
   <strong>The web, powered by Earth.</strong><br/>
